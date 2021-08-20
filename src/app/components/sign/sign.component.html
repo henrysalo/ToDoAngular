@@ -1,0 +1,42 @@
+<div class="container">
+    <form>
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="name" [formControl]="name">
+        </div>
+
+        <div class="mb-3">
+          <label for="last" class="form-label">Apellido</label>
+          <input type="password" class="form-control" id="last" [formControl]="last">
+        </div>
+
+        <div class="mb-3" >
+          <label for="email" class="form-label">Correo electrónico</label>
+              <input type="text" class="form-control" [minLength]=3 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"name="email" ngModel #emailref="ngModel">
+              <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class ="alert alert-danger">
+               <p [hidden]="!emailref.errors?.pattern">Correo invalido</p>
+              </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="contrasena1" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="contrasena1" [formControl]="contrasena1">
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="check" [formControl]="check">
+          <label class="form-check-label" for="check">Ver mi contraseña: </label>
+          <p *ngIf="check.value">{{contrasena1.value}}</p>
+        </div>
+
+        <div class="mb-3">
+          <label for="contrasena2" class="form-label">Repita la contraseña</label>
+          <input type="password" class="form-control" id="contrasena2" [formControl]="contrasena2">
+        </div>
+
+        <p *ngIf="!(contrasena1.value==contrasena2.value)" style="color: red;" class ="alert alert-danger">Las contraseñas son diferentes</p>
+
+        <button type="submit" class="btn btn-primary">Sign up</button>
+        <a class="active m-3" routerLinkActive='active' aria-current="page" routerLink='home'><button type="button" class="btn btn-primary">Cancelar</button></a>
+      </form>
+    </div>
