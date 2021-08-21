@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { ApitaskService } from "../../../services/apitask.service";
 
@@ -13,8 +13,9 @@ export class EditTaskComponent implements OnInit {
   @Input() titleOld ='';
   @Input() descriptionOld ='';
   @Input() _id ='';
+
   
-  constructor(private apiTaskService: ApitaskService) { }
+  constructor(private apiTaskService: ApitaskService,) { }
 
   ngOnInit(): void {
   }

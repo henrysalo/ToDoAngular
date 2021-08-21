@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApitaskService } from "../../services/apitask.service";
-import { Task } from "../../models/task";
 import { FormControl } from "@angular/forms";
 
 @Component({
@@ -10,24 +9,19 @@ import { FormControl } from "@angular/forms";
 })
 export class TaskComponent implements OnInit {
   tareasEncontradas: any[]=[];
+  idQuest:string='';
   constructor(private apiTaskService: ApitaskService) { }
   check = new FormControl();
-
-  
+  activar:boolean=false
 
   getTasks(){
     this.apiTaskService.getTasks().subscribe( (res) => {this.tareasEncontradas=(res)})
   }
 
-  // editTask(algo:number, newTask:any){
-  //   this.apiTaskService.editTasks(algo, newTask)
-  //   console.log('edit '+algo)
-  // }
-
   deleteTask(algo:string){
     this.apiTaskService.deleteTasks(algo).subscribe(
       res => {
-        location.reload()
+        this.getTasks()
         console.log(res)},
       err => console.error(err)
     );

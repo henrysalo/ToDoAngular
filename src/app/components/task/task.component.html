@@ -3,7 +3,7 @@
 <div id="tasks" class="card-column g-4">
     <app-new-task></app-new-task>
     
-    <div *ngFor="let tarea of tareasEncontradas" class="card bg-dark text-light mt-2">
+    <div *ngFor="let tarea of tareasEncontradas; index as i" class="card bg-dark text-light mt-2">
         <div class="card-body">
             <h5 *ngIf="!check.value" class="card-title">{{tarea.title}}</h5>
             <p *ngIf="!check.value" class="card-text">{{tarea.description}}</p>
@@ -11,7 +11,7 @@
             <div class="form-check form-switch" style="display : flex; flex-direction:row">
                 <label class="form-check-label m-2" for="check">Editar: </label>
 
-                <input type="checkbox" class="form-check-input m-3" id="check" [formControl]="check">
+                <input type="checkbox" class="form-check-input m-3" [formControl]="check">
                 <button type="submit" (click)="deleteTask(tarea._id)" class="btn btn-danger m-3">Borrar</button>  
                 <p *ngIf="check.value">hola</p>                
             </div>

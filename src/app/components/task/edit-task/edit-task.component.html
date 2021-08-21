@@ -2,14 +2,14 @@
 <div id="newTask">
     <div class="card bg-primary text-light p-2">
         <form [formGroup]="form2" (ngSubmit)="onSubmit()" class="card-body">
-            <div *ngIf="title2.invalid">El titulo es demasiado corto</div>
+            <div *ngIf="(title.value.length)<9">El titulo es demasiado corto</div>
 
-            <input formControlName="title2" class="form-control card-title" placeholder="TITULO: debe ser de más de 10 letras">
+            <input #title formControlName="title2" class="form-control card-title" placeholder="TITULO: debe ser de más de 10 letras">
 
             <textarea formControlName="description2"  class="form-control card-title" placeholder="Contenido" rows="4" cols="50"></textarea>
 
-            <button type="submit" class="btn btn-success" >Guardar</button>
-            <button (click)="setValue($event)" class="btn btn-danger m-3" >Reset</button>
+            <button *ngIf="!((title.value.length)<9)" type="submit" class="btn btn-success" >Guardar</button>
+            <button (click)="setValue($event)" class="btn btn-danger m-3" >Editar</button>
         </form>
     </div>
 </div>
