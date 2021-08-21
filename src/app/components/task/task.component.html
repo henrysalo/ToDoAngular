@@ -1,31 +1,21 @@
 <!-- <app-loading *ngIf='loading'></app-loading> -->
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <!-- <div *ngFor='let tareas of tasks' class="card"> -->
-    <div class="card">
+<div id="tasks" class="card-column g-4">
+    <app-new-task></app-new-task>
+    
+    <div *ngFor="let tarea of tareasEncontradas" class="card bg-dark text-light mt-2">
         <div class="card-body">
-            <!-- <h5 class="card-title">{{tareas.name}}</h5> -->
-            <!-- <p class="card-text">{{tareas.content}}</p> -->
-            <h5 class="card-title">tarea</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis autem quo rem beatae laborum consequuntur, illo dolorem id commodi, fuga, vitae fugiat totam voluptates odio! Aut repudiandae excepturi, nobis iste ad maxime amet porro ratione. Excepturi ex aspernatur placeat, error accusamus nobis ullam voluptate et, adipisci in, id deserunt assumenda.</p>
-            <button type="submit" class="btn btn-primary">Editar</button>  
-            <button type="submit" class="btn btn-primary">Borrar</button>  
-        </div>
-        <div class="card-body">
-            <!-- <h5 class="card-title">{{tareas.name}}</h5> -->
-            <!-- <p class="card-text">{{tareas.content}}</p> -->
-            <h5 class="card-title">tarea</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis autem quo rem beatae laborum consequuntur, illo dolorem id commodi, fuga, vitae fugiat totam voluptates odio! Aut repudiandae excepturi, nobis iste ad maxime amet porro ratione. Excepturi ex aspernatur placeat, error accusamus nobis ullam voluptate et, adipisci in, id deserunt assumenda.</p>
-            <button type="submit" class="btn btn-primary">Editar</button>  
-            <button type="submit" class="btn btn-primary">Borrar</button>  
-        </div>
-        <div class="card-body">
-            <!-- <h5 class="card-title">{{tareas.name}}</h5> -->
-            <!-- <p class="card-text">{{tareas.content}}</p> -->
-            <h5 class="card-title">tarea</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis autem quo rem beatae laborum consequuntur, illo dolorem id commodi, fuga, vitae fugiat totam voluptates odio! Aut repudiandae excepturi, nobis iste ad maxime amet porro ratione. Excepturi ex aspernatur placeat, error accusamus nobis ullam voluptate et, adipisci in, id deserunt assumenda.</p>
-            <button type="submit" class="btn btn-primary">Editar</button>  
-            <button type="submit" class="btn btn-primary">Borrar</button>  
+            <h5 *ngIf="!check.value" class="card-title">{{tarea.title}}</h5>
+            <p *ngIf="!check.value" class="card-text">{{tarea.description}}</p>
+            <app-edit-task *ngIf="check.value" [titleOld]='tarea.title' [descriptionOld]='tarea.description' [_id]='tarea._id'></app-edit-task>
+            <div class="form-check form-switch" style="display : flex; flex-direction:row">
+                <label class="form-check-label m-2" for="check">Editar: </label>
+
+                <input type="checkbox" class="form-check-input m-3" id="check" [formControl]="check">
+                <button type="submit" (click)="deleteTask(tarea._id)" class="btn btn-danger m-3">Borrar</button>  
+                <p *ngIf="check.value">hola</p>                
+            </div>
+            <!-- <button type="button" (click)="(tarea._id)" class="btn btn-success">Editar</button>  -->    
         </div>
     </div>
 </div>

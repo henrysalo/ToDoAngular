@@ -21,6 +21,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { NewTaskComponent } from './components/task/new-task/new-task.component';
+import { EditTaskComponent } from './components/task/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     LogoutComponent,
     LoadingComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    NewTaskComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
