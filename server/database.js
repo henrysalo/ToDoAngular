@@ -1,15 +1,14 @@
 const moongose = require ('mongoose')
 
-const URI_TASK = "mongodb://localhost/tasks"
-// const URI_USER = "mongodb://localhost/user"
+//Nombro la base de datos
+const URI_TASK = "mongodb://localhost/newtasks"
 
-// moongose.connect(URI_TASK && URI_USER)
-moongose.connect(URI_TASK ,{
+moongose.connect((URI_TASK),{
     useUnifiedTopology: true,
     useNewUrlParser: true,
     UseFindAndModify: false
 })
-    .then(db => console.log("DB is connected"))
+    .then(db => console.log("DB task is connected"))
     .catch(err => console.log(err));
 
 moongose.connect('')

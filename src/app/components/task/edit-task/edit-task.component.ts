@@ -1,3 +1,4 @@
+import { User } from './../../../models/user';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { ApitaskService } from "../../../services/apitask.service";
@@ -13,7 +14,8 @@ export class EditTaskComponent implements OnInit {
   @Input() titleOld ='';
   @Input() descriptionOld ='';
   @Input() _id ='';
-
+  @Input() user:any = {}; 
+  @Output() newItemEvent = new EventEmitter<any>();
   
   constructor(private apiTaskService: ApitaskService,) { }
 
@@ -26,29 +28,29 @@ export class EditTaskComponent implements OnInit {
     description2: new FormControl(''),
   });
 
-  onSubmit(): void {
+  subir(): void {
     this.editTask(this._id,{
       title: this.form2.value.title2, 
       description: this.form2.value.description2,
-      userId: "1",
+      userId: this.user.id,
       createdAt: new Date
     });
   }
-  editTask(id:string,newTask:any){
+  
+  editTask(id:string, newTask:any,){
     this.apiTaskService.editTasks(id,newTask).subscribe(
       res => {
-        location.reload()
         console.log(res)},
       err => console.error(err)
     );
+    this.newItemEvent.emit(newTask);
+    this.editarTask(newTask)
   }
-    // editTask(task:any){
-    //   console.log(task)
-    // }
+  
+  editarTask(value:any) {value}
 
   setValue($event:any) {
     $event.preventDefault()
     this.form2.setValue({title2: `${this.titleOld}`, description2: `${this.descriptionOld}`});
-    // console.log(this.titleOld+this.descriptionOld)
   }
 }

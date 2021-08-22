@@ -1,7 +1,7 @@
 <div id="newTask">
     <div id="tarjeta" class="card text-light p-2">
-    
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="card-body">
+        <!-- <form [formGroup]="form" (ngSubmit)="crarNuevaTarea()" class="card-body"> -->
+        <form [formGroup]="form" class="card-body">
             
             <div *ngIf="(titleNew.value.length)<9">El titulo es demasiado corto</div>
 
@@ -9,8 +9,9 @@
 
             <textarea formControlName="description"  class="form-control card-title" placeholder="Contenido" rows="4" cols="50"></textarea>
 
-            <button *ngIf="!((titleNew.value.length)<9)" type="submit" class="btn btn-success" >Guardar</button>
-            <button (click)="setValue($event)" class="btn btn-danger m-3" >Borrar</button>
+            <button type="button" *ngIf="!((titleNew.value.length)<9)" (click)="crarNuevaTarea()" class="btn btn-success" >Guardar</button>
+            <!-- <button type="button" (click)="setValue($event)" class="btn btn-danger m-3" >Borrar</button> -->
+            <button type="button" (click)="setValue()" class="btn btn-danger m-3" >Borrar</button>
         </form>
     </div>
 </div>

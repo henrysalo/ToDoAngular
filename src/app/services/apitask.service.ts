@@ -10,14 +10,13 @@ import { map } from'rxjs/operators';
 export class ApitaskService {
   URL_API= 'http://localhost:3000/1';
   URL_API2= 'http://localhost:3000/';
-
   
   task : Task[]=[];
  
   constructor(private http: HttpClient) { }
   
-  getTasks(){
-    return this.http.get<Task[]>(this.URL_API)
+  getTasks(id:string){
+    return this.http.get<Task[]>(`${this.URL_API2}${id}`)
   }
 
   createTask(task:Task){

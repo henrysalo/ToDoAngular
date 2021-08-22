@@ -1,21 +1,22 @@
 <!-- <app-loading *ngIf='loading'></app-loading> -->
 
 <div id="tasks" class="card-column g-4">
-    <app-new-task></app-new-task>
+    <app-new-task (newItemEvent)="addTask($event)" [user]="user"></app-new-task>
+    <div class="container bg-warning">
+        <label class="form-check-label m-2" for="check">¿Quieres editar alguna?</label>
+        <input type="checkbox" class="form-check-input m-3" [formControl]="check">
+    </div>
     
-    <div *ngFor="let tarea of tareasEncontradas; index as i" class="card bg-dark text-light mt-2">
+    <div *ngFor="let tarea of tareasEncontradas; index as i" class="card bg-secondary text-light mt-2">
         <div class="card-body">
-            <h5 *ngIf="!check.value" class="card-title">{{tarea.title}}</h5>
-            <p *ngIf="!check.value" class="card-text">{{tarea.description}}</p>
-            <app-edit-task *ngIf="check.value" [titleOld]='tarea.title' [descriptionOld]='tarea.description' [_id]='tarea._id'></app-edit-task>
-            <div class="form-check form-switch" style="display : flex; flex-direction:row">
-                <label class="form-check-label m-2" for="check">Editar: </label>
+            <h5 class="card-title">{{tarea.title}}</h5>
+            <p class="card-text">{{tarea.description}}</p>
 
-                <input type="checkbox" class="form-check-input m-3" [formControl]="check">
-                <button type="submit" (click)="deleteTask(tarea._id)" class="btn btn-danger m-3">Borrar</button>  
-                <p *ngIf="check.value">hola</p>                
+            <app-edit-task (newItemEvent)="editarTask($event)" *ngIf="check.value" [user]='user' [titleOld]='tarea.title' [descriptionOld]='tarea.description' [_id]='tarea._id'></app-edit-task>
+            
+            <div class="form-check form-switch" style="display : flex; flex-direction:row">
+                <button type="submit" (click)="deleteTask(tarea._id)" class="btn btn-danger m-3">Borrar</button>             
             </div>
-            <!-- <button type="button" (click)="(tarea._id)" class="btn btn-success">Editar</button>  -->    
         </div>
     </div>
 </div>

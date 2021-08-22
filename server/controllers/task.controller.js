@@ -1,6 +1,7 @@
 const Task = require('../model/task')
 const taskCtrl = {};
 
+//Los requerimientos
 taskCtrl.getTasks = async (req, res)=>{
     const { id } = req.params
     const task = await Task.find({userId: id})
