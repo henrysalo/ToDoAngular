@@ -1,4 +1,3 @@
-const { MongoClient } = require('mongodb');
 const moongose = require ('mongoose')
 
 //Base de datos en línea
