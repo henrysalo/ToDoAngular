@@ -10,7 +10,8 @@ export class NavbarComponent implements OnInit {
     firstName: '',
     lastName: '',
     id: '',
-    photoUrl: ''
+    photoUrl: '',
+    isLoggedin: false
   };
   addItem(newItem: any) {
     this.items = (newItem);

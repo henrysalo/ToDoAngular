@@ -1,20 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <div class="navbar" id="navbarTogglerDemo01">
-        <nav class="navbar navbar-dark bg-dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">
-                <img src="./assets/tuper2.png" alt="" width="64" height="40" class="d-inline-block align-text-top">
-                TupperApp
-              </a>
-            </div>
-        </nav>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <app-login (newItemEvent)="addItem($event)"></app-login>
-          <ul>
-            <li *ngIf="!(items===null)" style="color: aqua; list-style-type:none">{{items.firstName}} {{items.id}}</li>
-          </ul>
-        </ul>
-      </div>
+  <div class="container-fluid">
+    <div class="navbar" id="navbarTogglerDemo01">
+      <nav class="navbar navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img src="./assets/tuper2.png" alt="" width="64" height="40" class="d-inline-block align-text-top">
+              TupperApp
+            </a>
+          </div>
+      </nav>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <app-login (newItemEvent)="addItem($event)"></app-login>
+        <div *ngIf="!(items.isLoggedin===false)">
+          <p> Bienvenid@: {{items.firstName}} <img src={{items.photoUrl}} alt="Yo" id="avatar"> </p> <br>
+        </div>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
