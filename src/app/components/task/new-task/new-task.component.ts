@@ -34,13 +34,14 @@ export class NewTaskComponent implements OnInit {
   createTask(newTask:any){
     this.apiTaskService.createTask(newTask).subscribe( (res) => {
         newTask=res
+        this.newItemEvent.emit(newTask);
+        this.addTask(newTask)
+        console.log(newTask)
+        this.setValue()        
         console.log(res)},
       err => console.error(err)
     );
-    this.newItemEvent.emit(newTask);
-    this.addTask(newTask)
-    console.log(newTask)
-    this.setValue()
+
   }
 
   addTask(value:any) {value}

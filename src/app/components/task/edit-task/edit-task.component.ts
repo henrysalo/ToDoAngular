@@ -40,11 +40,12 @@ export class EditTaskComponent implements OnInit {
   editTask(id:string, newTask:any,){
     this.apiTaskService.editTasks(id,newTask).subscribe(
       res => {
+        this.newItemEvent.emit(newTask);
+        this.editarTask(newTask)
         console.log(res)},
       err => console.error(err)
     );
-    this.newItemEvent.emit(newTask);
-    this.editarTask(newTask)
+
   }
   
   editarTask(value:any) {value}
