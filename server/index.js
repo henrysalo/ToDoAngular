@@ -10,7 +10,7 @@ const appTask = express();
 
 //Settings
 appTask.set('port', process.env.PORT || 3000);
-appTask.set('views', path.join(__dirname, 'views'))
+appTask.set('src', path.join(__dirname, 'src'))
 
 //Middlewares:
 appTask.use(cors())
